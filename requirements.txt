@@ -1,0 +1,17 @@
+numpy>=1.24
+scipy>=1.10
+sympy>=1.12
+matplotlib>=3.7
+pandas>=2.0
+tqdm>=4.65
+h5py>=3.8
+tensorflow>=2.12
+torch>=2.0
+torchvision>=0.15
+qiskit>=0.44
+qiskit-aer>=0.12
+pytest>=7.4
+pytest-cov>=4.1
+black>=23.0
+isort>=5.12
+mypy>=1.4

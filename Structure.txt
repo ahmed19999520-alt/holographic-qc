@@ -1,0 +1,91 @@
+holographic-qc/
+├── README.md
+├── LICENSE
+├── setup.py
+├── pyproject.toml
+├── requirements.txt
+├── MANIFEST.in
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       └── publish.yml
+├── docs/
+│   ├── theory.md
+│   ├── api_reference.md
+│   ├── derivations.md
+│   └── benchmarks.md
+├── holographic_qc/
+│   ├── __init__.py
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── virasoro.py
+│   │   ├── ads_cft.py
+│   │   ├── dilaton.py
+│   │   ├── christoffel.py
+│   │   └── ryu_takayanagi.py
+│   ├── algorithms/
+│   │   ├── __init__.py
+│   │   ├── shor.py
+│   │   ├── grover.py
+│   │   ├── qft.py
+│   │   └── vqe.py
+│   ├── protection/
+│   │   ├── __init__.py
+│   │   ├── decoherence.py
+│   │   ├── majorana.py
+│   │   └── holographic_error_correction.py
+│   ├── ml/
+│   │   ├── __init__.py
+│   │   ├── tensorflow_models.py
+│   │   ├── pytorch_models.py
+│   │   └── training.py
+│   ├── materials/
+│   │   ├── __init__.py
+│   │   ├── bi2se3.py
+│   │   ├── hgte.py
+│   │   └── trapped_ions.py
+│   └── utils/
+│       ├── __init__.py
+│       ├── visualization.py
+│       ├── benchmarks.py
+│       └── datasets.py
+├── csharp/
+│   ├── HolographicQC.sln
+│   └── HolographicQC/
+│       ├── HolographicQC.csproj
+│       ├── Core/
+│       │   ├── VirasoroAlgebra.cs
+│       │   ├── AdsCft.cs
+│       │   ├── ChristoffelSymbols.cs
+│       │   └── RyuTakayanagi.cs
+│       ├── Algorithms/
+│       │   ├── ShorAlgorithm.cs
+│       │   ├── GroverAlgorithm.cs
+│       │   └── QuantumFourierTransform.cs
+│       └── Protection/
+│           ├── DecoherenceModel.cs
+│           ├── MajoranaQubit.cs
+│           └── HolographicCode.cs
+├── notebooks/
+│   ├── 01_virasoro_algebra.ipynb
+│   ├── 02_holographic_protection.ipynb
+│   ├── 03_shor_algorithm.ipynb
+│   ├── 04_grover_algorithm.ipynb
+│   └── 05_materials_benchmarks.ipynb
+├── scripts/
+│   ├── train_decoherence_tf.py
+│   ├── train_decoherence_torch.py
+│   ├── benchmark_platforms.py
+│   └── generate_dataset.py
+├── tests/
+│   ├── __init__.py
+│   ├── test_virasoro.py
+│   ├── test_ads_cft.py
+│   ├── test_shor.py
+│   ├── test_grover.py
+│   ├── test_decoherence.py
+│   └── test_materials.py
+└── data/
+    ├── bi2se3_arpes.csv
+    ├── hgte_transport.csv
+    └── ion_chain_otoc.csv

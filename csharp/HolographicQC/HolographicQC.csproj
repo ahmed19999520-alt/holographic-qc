@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>HolographicQC</AssemblyName>
+    <RootNamespace>HolographicQC</RootNamespace>
+    <Version>0.1.0</Version>
+    <Authors>Ahmed Ali</Authors>
+    <Description>Holographic quantum computing library</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
+    <PackageReference Include="MathNet.Numerics.MKL.Win-x64" Version="2.5.0" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,83 @@
+# Makefile
+
+.PHONY: install install-dev test test-cov lint format benchmark generate-data \
+        train-tf train-torch build-csharp run-csharp docs clean all pipeline
+
+PYTHON = python
+PIP = pip
+PYTEST = pytest
+BLACK = black
+ISORT = isort
+DOTNET = dotnet
+
+install:
+	$(PIP) install -e ".[all]"
+
+install-dev:
+	$(PIP) install -e ".[all,dev]"
+
+generate-data:
+	$(PYTHON) scripts/generate_dataset.py --n_samples 5000 --output_dir data
+
+test:
+	$(PYTEST) tests/ -v --tb=short
+
+test-cov:
+	$(PYTEST) tests/ -v --tb=short --cov=holographic_qc --cov-report=html --cov-report=term
+
+test-fast:
+	$(PYTEST) tests/ -v --tb=short -x -q
+
+lint:
+	$(BLACK) --check holographic_qc/ tests/ scripts/ notebooks/ examples/
+	$(ISORT) --check-only holographic_qc/ tests/ scripts/ notebooks/ examples/
+
+format:
+	$(BLACK) holographic_qc/ tests/ scripts/ notebooks/ examples/
+	$(ISORT) holographic_qc/ tests/ scripts/ notebooks/ examples/
+
+benchmark: generate-data
+	$(PYTHON) scripts/benchmark_platforms.py
+	$(PYTHON) -c "from holographic_qc.utils.benchmarks import Benchmarker; b=Benchmarker(); b.run_all()"
+
+train-tf: generate-data
+	$(PYTHON) scripts/train_decoherence_tf.py \
+		--epochs 200 --batch_size 64 --learning_rate 1e-3 \
+		--data data/bi2se3_arpes.csv --output models/decoherence_tf/
+
+train-torch: generate-data
+	$(PYTHON) scripts/train_decoherence_torch.py \
+		--epochs 200 --batch_size 64 --learning_rate 1e-3 \
+		--data data/bi2se3_arpes.csv --output models/decoherence_torch/ --device cpu
+
+build-csharp:
+	$(DOTNET) build csharp/HolographicQC.sln -c Release
+
+run-csharp: build-csharp
+	$(DOTNET) run --project csharp/HolographicQC/HolographicQC.csproj -c Release
+
+notebooks: generate-data
+	$(PYTHON) notebooks/01_virasoro_algebra.py
+	$(PYTHON) notebooks/02_holographic_protection.py
+	$(PYTHON) notebooks/03_shor_algorithm.py
+	$(PYTHON) notebooks/04_grover_algorithm.py
+	$(PYTHON) notebooks/05_materials_benchmarks.py
+
+pipeline: generate-data
+	$(PYTHON) examples/full_pipeline.py
+
+docs:
+	@echo "Documentation is in docs/ as Markdown files."
+	@ls docs/
+
+clean:
+	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+	find . -type f -name "*.pyc" -delete 2>/dev/null || true
+	find . -type d -name "*.egg-info" -exec rm -rf {} + 2>/dev/null || true
+	find . -type d -name ".pytest_cache" -exec rm -rf {} + 2>/dev/null || true
+	find . -type d -name "htmlcov" -exec rm -rf {} + 2>/dev/null || true
+	rm -f .coverage coverage.xml 2>/dev/null || true
+	rm -rf models/ figures/ 2>/dev/null || true
+
+all: install generate-data test benchmark notebooks pipeline
+	@echo "Full build complete."

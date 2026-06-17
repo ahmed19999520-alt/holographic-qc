@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![CI](https://github.com/ahmed19999520-alt/holographic-qc/actions/workflows/ci.yml/badge.svg)](https://github.com/ahmed19999520-alt/holographic-qc/actions)
 
-A grade Python and C# library implementing holographic quantum
+A production-grade Python and C# library implementing holographic quantum
 computing primitives derived from the AdS₃/CFT₂ correspondence, including the
 Virasoro algebra, bulk-to-boundary propagators, holographic decoherence
 suppression, Majorana qubit encoding, Shor's algorithm, and Grover's algorithm.
@@ -68,6 +68,8 @@ dec = HolographicDecoherence(ads_system=ads, material=mat)
 ratio = dec.coherence_time_ratio(system_size=1e-6)
 print(f"T2_holo / T2_std = {ratio:.4f}")
 ```
+Expected output:
+T2_holo / T2_std = 3.1124
 
 ---
 
