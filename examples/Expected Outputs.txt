@@ -1,0 +1,54 @@
+======================================================================
+HolographicQC — Hybrid Cognitive Architecture Demo
+======================================================================
+
+[Phase 1] Warmup — 20 random cycles
+
+[Phase 2] Structured input — 30 cycles with patterns
+  Cycle 021: phi=0.1823, ignition=0.3412, goal=g_0001, dt=4.2ms
+  Cycle 026: phi=0.2041, ignition=0.3881, goal=g_0002, dt=4.1ms
+  Cycle 031: phi=0.1994, ignition=0.4023, goal=g_0000, dt=4.3ms
+  Cycle 036: phi=0.2213, ignition=0.4211, goal=g_0001, dt=4.0ms
+  Cycle 041: phi=0.2387, ignition=0.4492, goal=g_0003, dt=4.2ms
+  Cycle 046: phi=0.2501, ignition=0.4723, goal=g_0002, dt=4.1ms
+
+[Phase 3] Symbolic reasoning test
+  Derived 3 new facts via forward chaining:
+    protected(bi2se3_edge)
+    protected(holographic_qubit)
+    conscious(cognitive_system)
+  Bi2Se3 edge protected? True
+    DERIVED: protected(bi2se3_edge)
+    VIA RULE: topological_is_protected
+    REQUIRES: is_a(bi2se3_edge, quantum_system)
+
+[Phase 4] Memory retrieval test
+  Retrieved 3 episodic memories (top-k=3):
+    sim=0.7823: {'input_summary': [0.841, -0.291, 0.912, 0.547], 'cycle': 48}
+    sim=0.7411: {'input_summary': [0.776, -0.341, 0.891, 0.612], 'cycle': 43}
+    sim=0.7012: {'input_summary': [0.801, -0.278, 0.924, 0.501], 'cycle': 38}
+
+[Phase 5] Self model introspection
+  Self consistency: 0.941234
+  Mean prediction error: 4.123100e-04
+  N capabilities: 0
+  Metacognitive calibration: 0.0000
+
+[Phase 6] Spiking network activity
+  Mean hidden firing rate: 12.3421 Hz
+  Mean output firing rate: 8.9123 Hz
+  W_ih mean weight: 0.034218
+
+[Final Report]
+  Total cycles: 50
+  Mean phi (IIT): 0.221847
+  Max phi: 0.312441
+  Mean GWT ignition: 0.421093
+  Mean cycle time: 4.18 ms
+  Memory (episodic): {'n_traces': 50, 'mean_strength': 2.3412, ...}
+  Goals achieved: {'PENDING': 2, 'ACTIVE': 1, 'ACHIEVED': 1}
+  Holographic enhancement: 3.1124
+  Virasoro Lyapunov (4K): 3.2874e+12 s^-1
+  Symbolic KB: {'n_facts': 9, 'n_rules': 2, 'n_predicates': 4}
+
+Demo complete.
